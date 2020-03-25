@@ -14,7 +14,7 @@ export default {
   actions: {
     async mount({ dispatch }) {
       console.log(socketUrl)
-      const socket = io(sockerUrl)
+      const socket = io(socketUrl)
       socket.on('connect', function () {
         console.log('connected')
       })

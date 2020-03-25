@@ -1,7 +1,6 @@
 import { version } from '../../package.json'
 import io from 'socket.io-client'
 
-const socketUrl = process.env.API_URL || 'https://loo-gawoo.herokuapp.com'
 export default {
   namespaced: true,
   state: {
@@ -10,7 +9,7 @@ export default {
   mutations: {},
   actions: {
     async mount({ dispatch }) {
-      const socket = io(socketUrl);
+      const socket = io("/");
       socket.on('connect', function(){
         console.log("connected");
       });

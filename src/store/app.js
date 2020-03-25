@@ -1,6 +1,10 @@
 import { version } from '../../package.json'
 import io from 'socket.io-client'
 
+const socketUrl = process.env.NODE_ENV === 'production'
+  ? 'https://loo-gawoo.herokuapp.com'
+  : '/'
+
 export default {
   namespaced: true,
   state: {
@@ -9,16 +13,17 @@ export default {
   mutations: {},
   actions: {
     async mount({ dispatch }) {
-      const socket = io("/");
-      socket.on('connect', function(){
-        console.log("connected");
-      });
-      socket.on('event', function(data){
-        console.log("event", data);
-      });
-      socket.on('disconnect', function(){
-        console.log("disconnected");
-      });
+      console.log(socketUrl)
+      const socket = io(sockerUrl)
+      socket.on('connect', function () {
+        console.log('connected')
+      })
+      socket.on('event', function (data) {
+        console.log('event', data)
+      })
+      socket.on('disconnect', function () {
+        console.log('disconnected')
+      })
     },
   },
   getters: {},

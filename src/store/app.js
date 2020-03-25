@@ -1,7 +1,7 @@
 import { version } from '../../package.json'
 import io from 'socket.io-client'
 
-const socketUrl = process.env.API_URL || 'http://localhost:3000'
+const socketUrl = process.env.API_URL || 'https://loo-gawoo.herokuapp.com'
 export default {
   namespaced: true,
   state: {

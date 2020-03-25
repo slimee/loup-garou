@@ -21,5 +21,6 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    color:grey;
   }
 </style>

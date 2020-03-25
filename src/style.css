@@ -1,7 +1,19 @@
 html, body {
-    height: 100%;
     margin: 0;
     overscroll-behavior-y: contain;
+}
+
+html, body, #app, #home {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    color: #850606;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+}
+
+.full-height {
+    height: 100%;
 }
 
 body {
@@ -24,59 +36,12 @@ a {
     text-decoration: none;
 }
 
-.clickable:hover {
-    cursor: pointer;
-}
-
-.hoverable:hover {
-    background-color: var(--hover-color);
-    fill: var(--hover-color);
-}
-
-.row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.column {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.no-select {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none;
-    /* Non-prefixed version, currently
-                                     supported by Chrome, Opera and Firefox */
-}
-
-.fade-enter-active, .fade-leave-active {
-    transition: opacity var(--transition-speed);
-}
-
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
-{
-    opacity: 0;
-}
-
 input {
     outline: none;
     border: none;
     background-color: unset;
     font-size: 18px;
     caret-color: grey;
-}
-
-@media (max-width: 767px) {
-    .large-only {
-        display: none;
-    }
 }
 
 .icon {
@@ -86,10 +51,6 @@ input {
 .btn {
     font-size: var(--btn-size);
     line-height: 0.5;
-}
-
-.full-height {
-    height: 100%;
 }
 
 .dark {

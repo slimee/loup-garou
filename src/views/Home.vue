@@ -1,38 +1,32 @@
 <template>
   <div id="home">
-    <flex-column class="full-height">
-      <spacer/>
-      <flex-line>
-        <spacer/>
-        <flex-column>
-          <img alt="Loup-garou logo" src="../assets/logo-jeu.png">
-          <div>Bientôt...</div>
-        </flex-column>
-        <spacer/>
-      </flex-line>
-      <spacer/>
-    </flex-column>
+    <centered>
+      <get-name v-if="playerUnknown"/>
+    </centered>
     <version/>
   </div>
 </template>
 
 <script>
-  // @ is an alias to /src
+  import { mapGetters } from 'vuex'
   import Version from '../components/Version'
+  import Centered from '../components/layout/Centered'
   import FlexColumn from '../components/layout/FlexColumn'
-  import Spacer from '../components/layout/Spacer'
-  import FlexLine from '../components/layout/FlexLine'
+  import GetName from '../components/GetName'
 
   export default {
     name: 'Home',
     components: {
-      FlexLine,
-      Spacer,
+      GetName,
       FlexColumn,
+      Centered,
       Version,
     },
     mounted() {
       this.$store.dispatch('app/mount')
+    },
+    computed: {
+      ...mapGetters('player', { playerUnknown: 'unknown' }),
     },
   }
 </script>

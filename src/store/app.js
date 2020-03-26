@@ -13,16 +13,49 @@ export default {
   mutations: {},
   actions: {
     async mount({ dispatch }) {
-      console.log(socketUrl)
+      console.log('connecting to', socketUrl)
       const socket = io(socketUrl)
       socket.on('connect', function () {
         console.log('connected')
+        socket.emit('add user', 'toto')
       })
-      socket.on('event', function (data) {
-        console.log('event', data)
+      socket.on('user joined', (data) => {
+        console.log(data, 'user joined')
       })
-      socket.on('disconnect', function () {
-        console.log('disconnected')
+      socket.on('login', (data) => {
+        //connected = true;
+        console.log('Welcome to Socket.IO Chat – ', data)
+      })
+
+      socket.on('new message', (data) => {
+        console.log('chat', data)
+      })
+
+      socket.on('user left', (data) => {
+        console.log(data, ' left')
+      })
+
+      socket.on('typing', (data) => {
+        console.log('typing', data)
+      })
+
+      socket.on('stop typing', (data) => {
+        console.log('stop typing', data)
+      })
+
+      socket.on('disconnect', () => {
+        console.log('you have been disconnected')
+      })
+
+      socket.on('reconnect', () => {
+        console.log('you have been reconnected')
+        if (username) {
+          socket.emit('add user', 'toto')
+        }
+      })
+
+      socket.on('reconnect_error', () => {
+        console.log('attempt to reconnect has failed')
       })
     },
   },

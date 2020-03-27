@@ -1,22 +1,28 @@
 <template>
   <div id="home">
-    <centered>
-      <get-name v-if="playerUnknown"/>
-    </centered>
-    <version/>
+    <connecting v-if="!connected"/>
+    <get-name v-else-if="!logged"/>
+    <logged v-else/>
+    <absolute-stuff/>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapActions, mapState } from 'vuex'
   import Version from '../components/Version'
   import Centered from '../components/layout/Centered'
   import FlexColumn from '../components/layout/FlexColumn'
-  import GetName from '../components/GetName'
+  import GetName from './GetName'
+  import Connecting from './Connecting'
+  import AbsoluteStuff from '../components/AbsoluteStuff'
+  import Logged from './Logged'
 
   export default {
     name: 'Home',
     components: {
+      Logged,
+      AbsoluteStuff,
+      Connecting,
       GetName,
       FlexColumn,
       Centered,
@@ -26,7 +32,19 @@
       this.$store.dispatch('app/mount')
     },
     computed: {
-      ...mapGetters('player', { playerUnknown: 'unknown' }),
+      ...mapState('socket', ['connected']),
+      ...mapState('player', { logged: 'logged' }),
+    },
+    methods: {
+      ...mapActions('app', ['autologin']),
+    },
+    watch: {
+      connected(value) {
+        if (value) {
+          console.log('socket is now connected!')
+          this.autologin()
+        }
+      },
     },
   }
 </script>

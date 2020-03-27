@@ -2,9 +2,6 @@ socket.on('login', (data) => {
   //connected = true;
   console.log('login', data)
 })
-socket.on('disconnect', () => {
-  console.log('disconnect')
-})
 
 socket.on('new message', (data) => {
   console.log('new message', data)

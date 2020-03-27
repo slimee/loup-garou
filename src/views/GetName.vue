@@ -14,10 +14,10 @@
 
 <script>
   import { mapActions } from 'vuex'
-  import Centered from './layout/Centered'
-  import FlexLine from './layout/FlexLine'
-  import DisplayText from './display/DisplayText'
-  import FlexColumn from './layout/FlexColumn'
+  import Centered from '../components/layout/Centered'
+  import FlexLine from '../components/layout/FlexLine'
+  import DisplayText from '../components/display/DisplayText'
+  import FlexColumn from '../components/layout/FlexColumn'
 
   export default {
     name: 'GetName',

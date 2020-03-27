@@ -1,40 +1,29 @@
 import { version } from '../../package.json'
-import io from 'socket.io-client'
-
-const socketUrl = process.env.NODE_ENV === 'production'
-  ? 'https://loo-gawoo.herokuapp.com'
-  : '/'
-
-let socket
 
 export default {
   namespaced: true,
   state: {
     version,
+    status,
   },
-  mutations: {},
+  mutations: {
+    setStatus(state, status) {
+      state.status = status
+    },
+  },
   actions: {
-    connect({ dispatch }) {
-      console.log('connecting to', socketUrl)
-      socket = io(socketUrl)
-      return new Promise((resolve) => {
-        socket.on('connect', function () {
-          console.log('connected')
-          resolve()
-        })
-        socket.on('user joined', (data) => {
-          console.log('user joined', data)
-        })
-        socket.on('login', (data) => {
-          console.log('login', data)
-        })
-      })
-    },
-    login({}, name) {
-      socket.emit('login', name)
-    },
     async mount({ dispatch }) {
-      await dispatch('connect')
+      await dispatch('socket/bind', null, { root: true })
+      await dispatch('chat/init', null, { root: true })
+      await dispatch('player/init', null, { root: true })
+    },
+    autologin() {
+      const player = JSON.parse(localStorage.getItem('player'))
+      if (player) {
+        this.dispatch('player/login', player, { root: true })
+      } else {
+        console.log('no player from storage')
+      }
     },
   },
   getters: {},

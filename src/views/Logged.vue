@@ -3,8 +3,8 @@
     <display-text class="text-dark text-alone">Bienvenue, {{name}}</display-text>
     <players-list/>
     <block>
-      <display-text class="text-dark text-medium" @click="createGame">Créer une partie</display-text>
-      <display-text class="text-dark text-medium" @click="joinGame">Rejoindre une partie</display-text>
+      <clickable-text @click="createGame">Créer une partie</clickable-text>
+      <clickable-text @click="joinGame">Rejoindre une partie</clickable-text>
     </block>
     <messages-list/>
     <chat-input/>
@@ -19,10 +19,11 @@
   import ChatInput from '../components/chat-input'
   import MessagesList from '../components/messages-list'
   import Block from '../components/layout/block'
+  import ClickableText from '../components/display/ClickableText'
 
   export default {
     name: 'logged',
-    components: { Block, MessagesList, ChatInput, PlayersList, DisplayText, CenteredVertical },
+    components: { ClickableText, Block, MessagesList, ChatInput, PlayersList, DisplayText, CenteredVertical },
     computed: {
       ...mapState('player', { player: 'player' }),
       name() {

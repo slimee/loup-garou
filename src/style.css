@@ -2,8 +2,10 @@
     --input-height: 32px;
     --font-size-alone: 3em;
     --font-size-medium: 1.5em;
+    --font-size-medium-hovered: 1.8em;
     --font-size-alone-minus: 2.5em;
     --text-color: #850606;
+    --text-color-hovered: #fc0606;
     --placeholder-color: #630505;
     --connected-color: green;
     --block-size: 1em;

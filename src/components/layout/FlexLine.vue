@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-line" @click="$emit('click')">
+  <div class="flex-line">
     <slot/>
   </div>
 </template>

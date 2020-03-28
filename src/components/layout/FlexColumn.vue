@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-column" @click="$emit('click')">
+  <div class="flex-column">
     <slot/>
   </div>
 </template>

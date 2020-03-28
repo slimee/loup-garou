@@ -16,13 +16,17 @@ html, body {
     overscroll-behavior-y: contain;
 }
 
-html, body, #app, #home {
-    font-family: 'Roboto', sans-serif;
+html, body, #app, #home, input[type=button] {
+    font-family: 'Creepster', cursive;
     height: 100%;
     color: var(--text-color);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
+}
+
+input, textarea, p {
+    font-family: 'Poor Story', cursive;
 }
 
 .full-height {
@@ -80,10 +84,6 @@ input {
     user-select: none;
 }
 
-.text-dark {
-    font-family: 'Creepster', cursive;
-}
-
 .text-alone {
     font-size: var(--font-size-alone);
 }
@@ -104,7 +104,7 @@ input {
 }
 
 .input-button-alone:disabled {
-    color:grey;
+    color: grey;
     opacity: 0.3;
 }
 
@@ -117,6 +117,6 @@ input {
     color: darkred;
 }
 
-.margin-top {
+.mt-1 {
     margin-top: 0.5em;
 }

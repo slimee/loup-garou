@@ -1,4 +1,4 @@
-import socket from '../services/socket'
+import { when } from '../services/socket'
 
 export default {
   namespaced: true,
@@ -13,13 +13,12 @@ export default {
   actions: {
     bind({ commit }) {
       return new Promise((resolve) => {
-        socket.on('connect', function () {
+        when('connect', function () {
           commit('setConnected', true)
           resolve()
         })
-        socket.on('disconnect', () => {
+        when('disconnect', () => {
           commit('setConnected', false)
-          commit('setLogged', false)
         })
       })
     },

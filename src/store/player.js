@@ -1,10 +1,5 @@
-import socket from '../services/socket'
-
-const uuidv4 = () => {
-  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16),
-  )
-}
+import { emit, when } from '../services/socket'
+import uuid from '../services/uuid'
 
 export default {
   namespaced: true,
@@ -36,14 +31,13 @@ export default {
   },
   actions: {
     init({ commit }) {
-      socket.on('user joined', (player) => {
+      when('user joined', (player) => {
         commit('userJoined', player)
       })
-      socket.on('user left', (player) => {
+      when('user left', (player) => {
         commit('userLeft', player)
       })
-      socket.on('login', ({ player, players }) => {
-        console.log('player logged', player)
+      when('login', ({ player, players }) => {
         commit('setLogged', true)
         commit('setPlayer', player)
         commit('setPlayers', players)
@@ -55,11 +49,10 @@ export default {
       dispatch('newLogin', name)
     },
     newLogin({ dispatch }, name) {
-      dispatch('login', { id: uuidv4() + '', name })
+      dispatch('login', { id: uuid() + '', name })
     },
     login({ commit, state }, player) {
-      console.log('login player', player)
-      socket.emit('login', player)
+      emit('login', player)
     },
   },
 }

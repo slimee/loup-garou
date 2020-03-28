@@ -1,4 +1,4 @@
-import socket from '../services/socket'
+import { emit, when } from '../services/socket'
 
 export default {
   namespaced: true,
@@ -26,26 +26,20 @@ export default {
   },
   actions: {
     init({ commit }) {
-      socket.on('new message', (message) => {
+      when('new message', (message) => {
         commit('addMessage', message)
         setTimeout(() => commit('removeMessage', message), 15000)
       })
-      socket.on('typing', (player) => {
+      when('typing', (player) => {
         commit('addTypingPlayer', player)
       })
-      socket.on('stop typing', (player) => {
+      when('stop typing', (player) => {
         commit('removeTypingPlayer', player)
       })
     },
-    sendMessage({}, message) {
-      socket.emit('new message', message)
-    },
-    typing({}) {
-      socket.emit('typing')
-    },
-    stopTyping({}) {
-      socket.emit('stop typing')
-    },
+    sendMessage: ({}, message) => emit('new message', message),
+    typing: ({}) => emit('typing'),
+    stopTyping: ({}) => emit('stop typing'),
   },
   getters: {},
 }

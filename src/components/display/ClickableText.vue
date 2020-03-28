@@ -1,5 +1,5 @@
 <template>
-  <div class="text-dark text-medium clickable-text">
+  <div class="text-medium clickable-text">
     <slot/>
   </div>
 </template>

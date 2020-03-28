@@ -19,4 +19,7 @@ export default new Vuex.Store({
     chat,
     game,
   },
+  getters: {
+    me: (state) => state.player.player,
+  },
 })

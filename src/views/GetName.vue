@@ -2,11 +2,11 @@
   <centered>
     <flex-column>
       <img alt="Loup-garou logo" src="../assets/logo-jeu.png">
-      <display-text class="text-dark text-alone">Quel est ton nom?</display-text>
-      <input type="text" class="text-dark input-text-alone margin-top" autofocus v-model="name" v-on:keyup.enter="go"/>
+      <display-text class="text-alone">Quel est ton nom?</display-text>
+      <input type="text" class="input-text-alone mt-1" autofocus v-model="name" v-on:keyup.enter="go"/>
       <flex-line>
-        <input type="button" class="text-dark input-button-alone" :disabled="!hasName" @click="go" value="Ok"/>
-        <input type="button" class="text-dark input-button-alone" disabled value="Partir!"/>
+        <input type="button" class="input-button-alone" :disabled="!hasName" @click="go" value="Ok"/>
+        <input type="button" class="input-button-alone" disabled value="Partir!"/>
       </flex-line>
     </flex-column>
   </centered>

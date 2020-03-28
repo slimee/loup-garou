@@ -1,10 +1,10 @@
 <template>
   <flex-column class="messages-list">
     <transition-group name="list-complete" tag="p">
-      <display-text v-for="message in messages" :key="message.id"
+      <p v-for="message in messages" :key="message.id"
                     class="list-complete-item">
         {{title(message.player)}}: {{message.content}}
-      </display-text>
+      </p>
     </transition-group>
   </flex-column>
 </template>
@@ -31,12 +31,6 @@
 </script>
 
 <style scoped>
-  .messages-list {
-    position: absolute;
-    bottom: 3em;
-    left: 0.5em;
-  }
-
   .list-complete-item {
     transition: all 0.3s;
   }

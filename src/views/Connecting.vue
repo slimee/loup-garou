@@ -1,7 +1,7 @@
 <template>
   <centered-vertical>
     <img alt="Loup-garou logo" src="../assets/connecting.png">
-    <display-text class="text-dark text-alone">Connection...</display-text>
+    <display-text class="text-alone">Connection...</display-text>
   </centered-vertical>
 </template>
 

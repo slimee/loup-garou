@@ -2,13 +2,15 @@
   <centered-vertical>
     <display-text class="text-dark text-alone">Bienvenue, {{name}}</display-text>
     <players-list/>
+    <display-text class="text-dark text-medium" @click="createGame">Créer une partie</display-text>
+    <display-text class="text-dark text-medium" @click="joinGame">Rejoindre une partie</display-text>
     <messages-list/>
     <chat-input/>
   </centered-vertical>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import { mapActions, mapState } from 'vuex'
   import CenteredVertical from '../components/layout/CenteredVertical'
   import DisplayText from '../components/display/DisplayText'
   import PlayersList from '../components/players-list'
@@ -23,6 +25,9 @@
       name() {
         return this.player && this.player.name
       },
+    },
+    methods: {
+      ...mapActions('game', { 'createGame': 'create', 'joinGame': 'join' }),
     },
   }
 </script>

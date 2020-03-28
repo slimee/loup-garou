@@ -4,6 +4,7 @@ import app from './app'
 import player from './player'
 import socket from './socket'
 import chat from './chat'
+import game from './game'
 
 Vue.use(Vuex)
 
@@ -16,5 +17,6 @@ export default new Vuex.Store({
     player,
     socket,
     chat,
+    game,
   },
 })

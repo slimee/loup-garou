@@ -4,18 +4,14 @@ export default {
   namespaced: true,
   state: {
     version,
-    status,
   },
-  mutations: {
-    setStatus(state, status) {
-      state.status = status
-    },
-  },
+  mutations: {},
   actions: {
     async mount({ dispatch }) {
       await dispatch('socket/bind', null, { root: true })
       await dispatch('chat/init', null, { root: true })
       await dispatch('player/init', null, { root: true })
+      await dispatch('game/init', null, { root: true })
     },
     autologin() {
       const player = JSON.parse(localStorage.getItem('player'))

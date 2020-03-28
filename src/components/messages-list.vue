@@ -3,7 +3,7 @@
     <transition-group name="list-complete" tag="p">
       <display-text v-for="message in messages" :key="message.id"
                     class="list-complete-item">
-        {{message.player.name}}: {{message.content}}
+        {{title(message.player)}}: {{message.content}}
       </display-text>
     </transition-group>
   </flex-column>
@@ -19,6 +19,13 @@
     components: { FlexColumn, DisplayText },
     computed: {
       ...mapState('chat', ['messages']),
+      ...mapState('player', { me: 'player' }),
+    },
+    methods: {
+      title(player) {
+        if (player.id === this.me.id) return 'vous'
+        else return player.name
+      },
     },
   }
 </script>
@@ -26,7 +33,7 @@
 <style scoped>
   .messages-list {
     position: absolute;
-    bottom: 2em;
+    bottom: 3em;
     left: 0.5em;
   }
 

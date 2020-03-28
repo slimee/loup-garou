@@ -6,6 +6,7 @@
     --text-color: #850606;
     --placeholder-color: #630505;
     --connected-color: green;
+    --block-size: 1em;
 }
 
 html, body {

@@ -2,8 +2,10 @@
   <centered-vertical>
     <display-text class="text-dark text-alone">Bienvenue, {{name}}</display-text>
     <players-list/>
-    <display-text class="text-dark text-medium" @click="createGame">Créer une partie</display-text>
-    <display-text class="text-dark text-medium" @click="joinGame">Rejoindre une partie</display-text>
+    <block>
+      <display-text class="text-dark text-medium" @click="createGame">Créer une partie</display-text>
+      <display-text class="text-dark text-medium" @click="joinGame">Rejoindre une partie</display-text>
+    </block>
     <messages-list/>
     <chat-input/>
   </centered-vertical>
@@ -16,10 +18,11 @@
   import PlayersList from '../components/players-list'
   import ChatInput from '../components/chat-input'
   import MessagesList from '../components/messages-list'
+  import Block from '../components/layout/block'
 
   export default {
     name: 'logged',
-    components: { MessagesList, ChatInput, PlayersList, DisplayText, CenteredVertical },
+    components: { Block, MessagesList, ChatInput, PlayersList, DisplayText, CenteredVertical },
     computed: {
       ...mapState('player', { player: 'player' }),
       name() {

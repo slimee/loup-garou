@@ -24,6 +24,7 @@
       playersTyping() {
         return this.typingPlayers.length > 0
       },
+
       twoPlayersAreTyping() {
         return this.typingPlayers.length === 2
       },

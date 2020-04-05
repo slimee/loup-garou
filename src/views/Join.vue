@@ -1,6 +1,6 @@
 <template>
   <flex-column>
-    <p v-for="game in games">{{game.name}}</p>
+    <p v-for="game in games" @click="joinGame(game)">{{game.name}}</p>
   </flex-column>
 </template>
 
@@ -16,9 +16,8 @@
       ...mapState('game', { games: 'games' }),
     },
     methods: {
-      ...mapActions('game', ['list']),
+      ...mapActions('game', { list: 'list', joinGame: 'join' }),
       async listLoop() {
-        console.log("ISTE")
         await this.list()
         if (this.loop) setTimeout(() => this.listLoop(), 1000)
       },

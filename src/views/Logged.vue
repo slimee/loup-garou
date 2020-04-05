@@ -4,8 +4,7 @@
     <display-text v-if="fresh" class="text-alone">Bienvenue, {{playerName}}</display-text>
     <players-list v-if="fresh" :players="others"/>
 
-    <clickable-text v-if="fresh || creating || joining" @click.native="createClick" class="mt-1">Créer une partie
-    </clickable-text>
+    <clickable-text v-if="fresh || creating" @click.native="createClick" class="mt-1">Créer une partie</clickable-text>
     <input v-if="creating" type="text" class="input-text-alone mt-1" autofocus v-model="gameName"
            v-on:keyup.enter="createGame(gameName)"/>
     <input v-if="creating" type="button" class="input-button-alone" :disabled="!hasGameName" @click="createGame"

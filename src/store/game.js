@@ -1,4 +1,4 @@
-import { emit } from '../services/socket'
+import { emit, when } from '../services/socket'
 import uuid from '../services/uuid'
 
 export default {
@@ -18,6 +18,10 @@ export default {
   },
   actions: {
     init({ commit }) {
+      when('join request', (game, respond) => {
+        console.log('join request')
+        respond('coucou')
+      })
     },
     async create({ commit, rootGetters }, name) {
       const me = rootGetters.me
@@ -29,11 +33,20 @@ export default {
         neededPlayers: 7,
       }
       await emit('create game', game)
+      console.log('setMine', game)
       commit('setMine', game)
     },
     async list({ commit }) {
       const games = await emit('list games')
       commit('setGames', games)
+    },
+    async join({ commit }, game) {
+      console.log('join...', game.name)
+      const joinResult = await emit('join game', game)
+      console.log('join result...', game.name)
+      if (joinResult) {
+        commit('setJoined', game)
+      }
     },
   },
   getters: {

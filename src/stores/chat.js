@@ -27,6 +27,7 @@ export default {
   actions: {
     init({ commit }) {
       when('new message', (message) => {
+        console.log('new message', message)
         commit('addMessage', message)
         setTimeout(() => commit('removeMessage', message), 15000)
       })
@@ -37,7 +38,11 @@ export default {
         commit('removeTypingPlayer', player)
       })
     },
-    sendMessage: ({}, message) => emit('new message', message),
+    sendMessage: async ({}, message) => {
+      console.log('sendMessage', message)
+      const response = await emit('new message', message)
+      console.log('response: ', response)
+    },
     typing: ({}) => emit('typing'),
     stopTyping: ({}) => emit('stop typing'),
   },

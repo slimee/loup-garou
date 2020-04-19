@@ -3,7 +3,7 @@
     <div v-if="playersTyping" class="players-typing">{{typingPlayersText}}</div>
     <input type="text" class="chat-input" placeholder="Dire quelque chose..."
            v-model="message"
-           v-on:keyup.enter="enter"
+           v-on:keyup.enter="enterMessage"
            @focus="typing" @blur="stopTyping"
     />
   </flex-column>
@@ -46,7 +46,7 @@
     },
     methods: {
       ...mapActions('chat', ['sendMessage', 'typing', 'stopTyping']),
-      async enter(event) {
+      async enterMessage(event) {
         if (this.message) {
           await this.sendMessage(this.message)
           this.message = null

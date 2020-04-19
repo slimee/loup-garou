@@ -4,9 +4,12 @@ module.exports = {
       skipWaiting: true,
     },
   },
-  devServer: {
-    proxy: {
-      '/': { target: 'http://localhost:3000' },
+  configureWebpack: {
+    devServer: {
+      historyApiFallback: true,
+      proxy: {
+        '/socket.io': { target: 'http://localhost:3000' },
+      },
     },
   },
 }

@@ -11,7 +11,7 @@ export default {
     },
   },
   actions: {
-    bind({ commit }) {
+    init({ commit }) {
       return new Promise((resolve) => {
         when('connect', function () {
           commit('setConnected', true)

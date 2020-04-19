@@ -8,15 +8,17 @@ export default {
   mutations: {},
   actions: {
     async mount({ dispatch }) {
-      await dispatch('socket/bind', null, { root: true })
+      await dispatch('socket/init', null, { root: true })
+      await dispatch('autologin')
       await dispatch('chat/init', null, { root: true })
       await dispatch('player/init', null, { root: true })
       await dispatch('game/init', null, { root: true })
+      await dispatch('game/enterGame', null, { root: true })
     },
-    autologin() {
+    async autologin({ dispatch }) {
       const player = JSON.parse(localStorage.getItem('player'))
       if (player) {
-        this.dispatch('player/login', player, { root: true })
+        await dispatch('player/login', player, { root: true })
       } else {
         console.log('no player from storage')
       }

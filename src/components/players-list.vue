@@ -35,7 +35,7 @@
         return 'Vous êtes seul.'
       },
       textCompact() {
-        return `Il y a ${this.count} autre${this.plural} villageois...`
+        return `Il y a ${this.count} villageois...`
       },
       textMany() {
         const twoOthers = this.players.length === 2

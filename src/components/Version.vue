@@ -1,5 +1,5 @@
 <template>
-  <div class="version">{{version}}</div>
+  <span>{{version}}</span>
 </template>
 
 <script>
@@ -17,10 +17,4 @@
 </script>
 
 <style scoped>
-  .version {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color:grey;
-  }
 </style>

@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <version/>
-    <messages-list/>
-    <flex-line>
-      <div class="menu-button">☰</div>
-      <chat-input v-if="connected"/>
-    </flex-line>
-  </div>
+  <div class="button" @click="$emit('click')">☰</div>
+  <!--  <div>-->
+  <!--    <version/>-->
+  <!--    <messages-list/>-->
+  <!--      <chat-input v-if="connected"/>-->
+  <!--  </div>-->
 </template>
 
 <script>
@@ -17,7 +15,7 @@
   import FlexLine from './layout/FlexLine'
 
   export default {
-    name: 'menu',
+    name: 'my-menu',
     components: { FlexLine, ChatInput, MessagesList, Version },
     computed: {
       ...mapState('socket', ['connected']),
@@ -26,8 +24,8 @@
 </script>
 
 <style scoped>
-  .menu-button {
-    width: 2em;
+  .button {
     cursor: pointer;
   }
+
 </style>

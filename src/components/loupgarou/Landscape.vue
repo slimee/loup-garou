@@ -14,11 +14,15 @@
     name: 'landscape',
     data: () => ({
       day: true,
-      astreDaySize: 50,
-      astreNightSize: 90,
     }),
     computed: {
       ...mapGetters('view', ['viewBox']),
+      astreDaySize() {
+        return Math.min(this.viewBox.width, this.viewBox.height) * 0.15
+      },
+      astreNightSize() {
+        return Math.min(this.viewBox.width, this.viewBox.height) * 0.2
+      },
       sky() {
         return {
           x: this.viewBox.left,
@@ -99,6 +103,6 @@
     --soleil-color: #ffea35;
     --lune-color: #e8e9eb;
     --sky-color: #33CCFF;
-    --ground-color: #618b51;
+    --ground-color: #508b4a;
   }
 </style>

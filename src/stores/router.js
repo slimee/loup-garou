@@ -5,9 +5,9 @@ export default {
   state: {},
   mutations: {},
   actions: {
-    async goToGame({ dispatch }, gameId) {
-      await router.push({ name: 'game', params: { gameId } })
-      await dispatch('game/enterGame', null, { root: true })
+    async goToGame({ dispatch }, game) {
+      await router.push({ name: 'game', params: { gameId: game.id } })
+      await dispatch('game/joinGame', null, { root: true })
     },
     goToHome({}) {
       router.push({ name: 'home' })

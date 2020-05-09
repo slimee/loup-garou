@@ -9,23 +9,19 @@ export default {
     games: [],
   },
   mutations: {
-    addPlayer(state, join) {
-      const { game: gameToMutate, player: playerToAdd } = join
-      const existingGame = state.games.find(game => game.id === gameToMutate.id)
-      if (!existingGame) return console.log(`game not found ${gameToMutate.id}`)
-
-      const existingPlayer = existingGame.players.find(player => player.id === playerToAdd.id)
-      if (existingPlayer) return console.log(`player already here ${existingPlayer.name}`)
-      else existingGame.players.push(playerToAdd)
-    },
-    addGame(state, game) {
-      state.games.push(game)
+    setGames(state, games) {
+      state.games = games
     },
     setCurrent(state, game) {
       state.current = game
     },
-    setGames(state, games) {
-      state.games = games
+    addPlayer(state, join) {
+      const { game: gameToMutate, player: playerToAdd } = join
+      if (!state.current) return console.log(`no current game ${gameToMutate.id}`)
+
+      const existingPlayer = state.current.players.find(player => player.id === playerToAdd.id)
+      if (existingPlayer) return console.log(`player already here ${existingPlayer.name}`)
+      else state.current.players.push(playerToAdd)
     },
   },
   getters: {
@@ -35,10 +31,13 @@ export default {
     players(state) {
       return state.current.players
     },
+    currentCanBeStarted(state) {
+      return state.current.phase === 'joining'
+    },
   },
   actions: {
     init({ commit }) {
-      when('join game', (join) => {
+      when('player has joined game', (join) => {
         if (!join.game || !join.player) console.warn('invalid join game received', join)
         else commit('addPlayer', join)
       })
@@ -55,20 +54,22 @@ export default {
         players: [me],
       }
       const gameId = await emit('create game', game)
-      dispatch('router/goToGame', gameId, { root: true })
+      //this line will dispatch joinGame bellow
+      dispatch('router/goToGame', { id: gameId }, { root: true })
     },
-    async join({ dispatch }, { id: gameId }) {
-      await dispatch('router/goToGame', gameId, { root: true })
-    },
-    async enterGame({ getters, dispatch, commit }) {
+    async joinGame({ getters, dispatch, commit }) {
       if (!getters.gameId) return
       const game = await emit('join game', getters.gameId)
       if (game && game.id) {
-        commit('addGame', game)
         commit('setCurrent', game)
       } else {
+        console.error('join game returns', game)
         return dispatch('router/goToHome', null, { root: true })
       }
+    },
+    async start({ state }) {
+      const result = await emit('start game', state.current.id)
+      console.log(result)
     },
   },
 }

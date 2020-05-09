@@ -19,6 +19,11 @@ export default {
       state.player = player
     },
   },
+  getters: {
+    isHost(state, getters, rootState) {
+      return rootState.game.current.host.id === state.player.id
+    },
+  },
   actions: {
     init({ commit }) {
       when('user joined', (player) => {

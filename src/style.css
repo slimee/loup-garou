@@ -17,7 +17,7 @@ html, body {
 }
 
 html, body, #app, #home, input[type=button] {
-    font-family: 'Creepster', cursive;
+    font-family: 'Special Elite', cursive;
     height: 100%;
     color: var(--text-color);
     -webkit-font-smoothing: antialiased;
@@ -26,7 +26,8 @@ html, body, #app, #home, input[type=button] {
 }
 
 input, textarea, p {
-    font-family: 'Poor Story', cursive;
+    font-family: 'Special Elite', cursive;
+    /*font-family: 'Dosis', sans-serif;*/
 }
 
 .full-height {

@@ -13,7 +13,7 @@ export default {
       await dispatch('chat/init', null, { root: true })
       await dispatch('player/init', null, { root: true })
       await dispatch('game/init', null, { root: true })
-      await dispatch('game/enterGame', null, { root: true })
+      await dispatch('game/joinGame', null, { root: true })
     },
     async autologin({ dispatch }) {
       const player = JSON.parse(localStorage.getItem('player'))

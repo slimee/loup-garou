@@ -10,7 +10,7 @@
     computed: {
       ...mapState('app', { versionNumber: 'version' }),
       version() {
-        return `v.${this.versionNumber}`
+        return `${this.versionNumber}`
       },
     },
   }

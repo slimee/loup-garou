@@ -22,6 +22,7 @@
     opacity: 0;
     transition: opacity ease .3s;
     pointer-events: none;
+    z-index: 3;
   }
 
   .opaque {

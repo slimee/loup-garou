@@ -68,8 +68,7 @@ export default {
       }
     },
     async start({ state }) {
-      const result = await emit('start game', state.current.id)
-      console.log(result)
+      await emit('start game', state.current.id)
     },
   },
 }
